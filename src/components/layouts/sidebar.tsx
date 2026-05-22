@@ -10,7 +10,6 @@ import {
   Settings2,
   UserPlus,
   Key,
-  Users,
   ShoppingBag,
   Box,
   UploadCloud,
@@ -46,9 +45,9 @@ const iconStyles: Record<string, string> = {
   Facility: "bg-slate-100 text-slate-600",
   Documents: "bg-violet-100 text-violet-500",
   StoreSetup: "bg-purple-100 text-purple-500",
-  StaffInvites: "bg-indigo-200 text-blue-600  ",
+  StaffInvites: "bg-indigo-200 text-blue-600",
   Credentials: "bg-amber-100 text-amber-500",
-  Suppliers: "bg-rose-100 text-rose-500",
+  Suppliers: "bg-emerald-100 text-emerald-600",
   MyOrders: "bg-orange-100 text-orange-500",
   ManualInventory: "bg-orange-50 text-orange-400",
   BatchImport: "bg-blue-100 text-blue-500",
@@ -192,13 +191,6 @@ export const Sidebar: React.FC<{
 
         <SectionLabel label="Marketplace" />
         <NavItem
-          label="Suppliers"
-          icon={Users}
-          active={activePage === "Suppliers"}
-          onClick={() => onSelectPage("Suppliers")}
-          pageKey="Suppliers"
-        />
-        <NavItem
           label="My Orders"
           icon={ShoppingBag}
           active={activePage === "MyOrders"}
@@ -228,13 +220,15 @@ export const Sidebar: React.FC<{
           </button>
         </div>
       </nav>
-      <button className="flex items-center gap-2 border-slate-200 bg-white px-5 py-2.5 text-sm font-black text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:text-rose-600">
-        Logout
+      
+      {/* Logout Button */}
+      <button className="flex items-center gap-2 border-t border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-all hover:bg-slate-50 hover:text-rose-600">
         <LogOut size={16} />
+        Logout
       </button>
 
       {/* FIXED SETTINGS FOOTER */}
-      <div className="mt-auto border-t border-slate-100 bg-slate-50/50 p-4">
+      <div className="border-t border-slate-100 bg-slate-50/50 p-4">
         <button className="flex items-center gap-4 px-4 py-3 w-full rounded-xl text-slate-500 hover:bg-white hover:text-[#6366f1] transition-all border border-transparent hover:border-slate-200">
           <Settings size={20} strokeWidth={2} />
           <span className="text-sm font-black">Settings</span>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Header } from "./components/layouts/header";
 import { Sidebar } from "./components/layouts/sidebar";
+import { SidebarSupplyHub } from "./components/layouts/sidebar-supply-hub";
 import { OverviewPage } from "./components/pages/overview";
 import { StoreInfoPage } from "./components/pages/store-info";
 import { AddressPage } from "./components/pages/address";
@@ -34,18 +35,27 @@ type PageKey =
   | "ManualInventory"
   | "BatchImport";
 
+type OrderTab = "pending" | "awaiting-confirmation" | "awaiting-payment" | "confirmed" | "shipped" | "delivered" | "cancelled";
+
 function App() {
   const [activePage, setActivePage] = useState<PageKey>("Overview");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [isInSupplyHub, setIsInSupplyHub] = useState(false);
+  const [supplyHubActiveSection, setSupplyHubActiveSection] = useState<"suppliers" | "my-orders">("my-orders");
+  const [ordersActiveTab, setOrdersActiveTab] = useState<OrderTab>("pending");
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
+
+  const handleBackToMainMenu = () => {
+    setIsInSupplyHub(false);
+    setActivePage("Overview");
+  };
 
   useEffect(() => {
     const handleResize = () => {
       const desktop = window.innerWidth >= 768;
       setIsDesktop(desktop);
-      // On desktop, keep sidebar open; on mobile, start closed
       setSidebarOpen(desktop);
     };
 
@@ -77,7 +87,15 @@ function App() {
       case "Suppliers":
         return <SuppliersPage />;
       case "MyOrders":
-        return <MyOrdersPage />;
+        return (
+          <MyOrdersPage
+            activeTab={ordersActiveTab}
+            onNewOrder={() => {
+              setActivePage("Suppliers");
+              setSupplyHubActiveSection("suppliers");
+            }}
+          />
+        );
       case "ManualInventory":
         return <ManualInventoryPage />;
       case "BatchImport":
@@ -87,14 +105,23 @@ function App() {
     }
   };
 
+  // Determine which sidebar to show
+  const shouldShowSupplyHub = isInSupplyHub && (activePage === "MyOrders" || activePage === "Suppliers");
+  // Calculate the correct padding based on which sidebar is showing
+  const sidebarWidth = shouldShowSupplyHub ? "288px" : "260px"; // w-72 = 288px, w-65 = 260px
+
   return (
     <div className="flex flex-col h-screen">
       <Header toggleSidebar={toggleSidebar} />
 
-      {/* Main area is relative so sidebar can overlay it */}
       <div className="relative flex-1 overflow-hidden bg-[#F5FAF5]">
-        {/* Content always full area */}
-        <main className="lg:pl-[260px] h-full overflow-y-auto">
+        {/* Content area with dynamic padding based on sidebar visibility */}
+        <main
+          className="h-full overflow-y-auto transition-all duration-300"
+          style={{
+            paddingLeft: sidebarOpen && isDesktop ? sidebarWidth : "0px"
+          }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activePage}
@@ -113,26 +140,51 @@ function App() {
         <AnimatePresence>
           {sidebarOpen && (
             <motion.div
-              // On desktop: static at left; on mobile: slide-in overlay
-              initial={{ x: isDesktop ? 0 : -260 }}
+              initial={{ x: isDesktop ? 0 : -sidebarWidth }}
               animate={{ x: 0 }}
-              exit={{ x: isDesktop ? 0 : -260 }}
+              exit={{ x: isDesktop ? 0 : -sidebarWidth }}
               transition={{ duration: 0.3 }}
-              className="
+              className={`
                 absolute left-0 top-0 h-full 
                 bg-white shadow-lg 
                 z-20
-                w-[260px]
-              "
+                ${shouldShowSupplyHub ? "w-72" : "w-[260px]"}
+              `}
             >
-              <Sidebar
-                activePage={activePage}
-                onSelectPage={(page) => {
-                  setActivePage(page);
-                  // On mobile, close sidebar when selecting a page
-                  if (!isDesktop) setSidebarOpen(false);
-                }}
-              />
+              {shouldShowSupplyHub ? (
+                <SidebarSupplyHub
+                  activeTab={ordersActiveTab}
+                  onSelectTab={setOrdersActiveTab}
+                  onBackToMain={handleBackToMainMenu}
+                  onSuppliersClick={() => {
+                    setActivePage("Suppliers");
+                    setSupplyHubActiveSection("suppliers");
+                  }}
+                  onMyOrdersClick={() => {
+                    setActivePage("MyOrders");
+                    setSupplyHubActiveSection("my-orders");
+                  }}
+                  activeMainSection={supplyHubActiveSection}
+                />
+              ) : (
+                <Sidebar
+                  activePage={activePage}
+                  onSelectPage={(page) => {
+                    setActivePage(page);
+                    if (page === "MyOrders") {
+                      setIsInSupplyHub(true);
+                      setSupplyHubActiveSection("my-orders");
+                    } else if (page === "Suppliers") {
+                      setIsInSupplyHub(true);
+                      setSupplyHubActiveSection("suppliers");
+                    } else {
+                      setIsInSupplyHub(false);
+                    }
+                    // On mobile, close sidebar when selecting a page
+                    if (!isDesktop) setSidebarOpen(false);
+                  }}
+                />
+              )}
             </motion.div>
           )}
         </AnimatePresence>
