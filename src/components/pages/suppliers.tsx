@@ -72,19 +72,39 @@ export const SuppliersPage: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="flex flex-col gap-4"
         >
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-emerald-100 rounded-xl">
-              <Users size={20} className="text-emerald-600" />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-100 rounded-xl">
+                <Users size={20} className="text-emerald-600" />
+              </div>
+              <div>
+                <h1 className="text-xl md:text-2xl font-bold text-slate-700">Suppliers</h1>
+                <p className="text-[11px] md:text-[12px] text-slate-500">
+                  Browse approved suppliers from the SupplyHub marketplace
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl md:text-2xl font-black text-slate-700">Suppliers</h1>
-              <p className="text-[11px] md:text-[12px] text-slate-500">
-                Browse approved suppliers from the SupplyHub marketplace
-              </p>
+
+            {/* Desktop Active Suppliers Indicator - Moved to Right Side */}
+            <div className="hidden md:flex items-center gap-3 bg-white rounded-2xl px-4 py-2 shadow-sm border border-slate-200 w-fit">
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                 
+                </div>
+                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Active Suppliers</span>
+              </div>
+              <div className="h-6 w-px bg-slate-200" />
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-bold text-emerald-600">{filteredSuppliers.length}</span>
+                <span className="text-[11px] text-slate-400">total</span>
+              </div>
+              <div className="ml-1">
+                <TrendingUp size={14} className="text-emerald-500" />
+              </div>
             </div>
           </div>
 
-          {/* Active Suppliers Indicator - Mobile */}
+          {/* Active Suppliers Indicator - Mobile Only */}
           <div className="flex items-center justify-between bg-white rounded-xl px-4 py-2 border border-slate-200 md:hidden">
             <div className="flex items-center gap-2">
               <div className="relative">
@@ -94,27 +114,10 @@ export const SuppliersPage: React.FC = () => {
               <span className="text-[10px] font-semibold text-slate-500">Active Suppliers</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-lg font-black text-emerald-600">{filteredSuppliers.length}</span>
+              <span className="text-lg font-bold text-emerald-600">{filteredSuppliers.length}</span>
               <span className="text-[10px] text-slate-400">total</span>
             </div>
             <TrendingUp size={12} className="text-emerald-500" />
-          </div>
-
-          {/* Desktop Active Suppliers Indicator */}
-          <div className="hidden md:flex items-center gap-3 bg-white rounded-2xl px-4 py-2 shadow-sm border border-slate-200 w-fit">
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-1 -right-1 animate-ping" />
-                <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              </div>
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Active Suppliers</span>
-            </div>
-            <div className="h-6 w-px bg-slate-200" />
-            <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-black text-emerald-600">{filteredSuppliers.length}</span>
-              <span className="text-[11px] text-slate-400">total</span>
-            </div>
-            <TrendingUp size={14} className="text-emerald-500" />
           </div>
         </motion.div>
 
@@ -151,15 +154,14 @@ export const SuppliersPage: React.FC = () => {
           className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm"
         >
           <div className="overflow-x-auto">
-            {/* Adjusted column widths to prevent overlap */}
             <div className="min-w-[800px] md:min-w-full">
               {/* Table Header */}
               <div className="grid grid-cols-12 gap-3 px-5 py-3 bg-slate-50 border-b border-slate-200">
-                <div className="col-span-2 text-[11px] font-black uppercase tracking-wider text-slate-500">CODE</div>
-                <div className="col-span-4 text-[11px] font-black uppercase tracking-wider text-slate-500">NAME</div>
-                <div className="col-span-3 text-[11px] font-black uppercase tracking-wider text-slate-500">LOCATION</div>
-                <div className="col-span-2 text-[11px] font-black uppercase tracking-wider text-slate-500">STATUS</div>
-                <div className="col-span-1 text-[11px] font-black uppercase tracking-wider text-slate-500 text-right">ACTION</div>
+                <div className="col-span-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">CODE</div>
+                <div className="col-span-4 text-[11px] font-bold uppercase tracking-wider text-slate-500">NAME</div>
+                <div className="col-span-3 text-[11px] font-bold uppercase tracking-wider text-slate-500">LOCATION</div>
+                <div className="col-span-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">STATUS</div>
+                <div className="col-span-1 text-[11px] font-bold uppercase tracking-wider text-slate-500 text-right">ACTION</div>
               </div>
 
               {/* Table Rows */}
@@ -198,7 +200,7 @@ export const SuppliersPage: React.FC = () => {
                         </div>
                       </div>
                       
-                      {/* Status - Fixed width badge */}
+                      {/* Status */}
                       <div className="col-span-2">
                         <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">
                           <CheckCircle size={8} />
@@ -206,7 +208,7 @@ export const SuppliersPage: React.FC = () => {
                         </span>
                       </div>
                       
-                      {/* Action - Right aligned */}
+                      {/* Action */}
                       <div className="col-span-1 flex justify-end">
                         <button
                           onClick={() => handleViewStore(supplier)}
