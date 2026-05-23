@@ -105,7 +105,7 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: DeliveredOrder; isE
           </div>
           <button 
             onClick={onToggle}
-            className={`flex items-center gap-1.5 text-[12px] font-bold px-4 py-2.5 rounded-xl transition-all active:scale-95 ${
+            className={`flex items-center gap-1.5 text-[12px] font-bold px-4 py-2.5 rounded-xl cursor-pointer transition-all active:scale-95 ${
               isExpanded 
               ? "bg-slate-100 text-slate-600" 
               : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"

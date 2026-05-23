@@ -115,14 +115,14 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
             <p className="text-xl font-bold text-emerald-600 leading-tight">{order.total}</p>
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto">
-            <button className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-[12px] font-bold text-rose-600 bg-rose-50 px-3 py-2 rounded-lg hover:bg-rose-100 transition-colors">
+            <button className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-[12px] font-bold text-rose-600 bg-rose-50 px-3 py-2 rounded-lg hover:bg-rose-100 cursor-pointertransition-colors">
               <XCircle size={14} />
               <span className="whitespace-nowrap">Cancel Order</span>
             </button>
             <button 
               onClick={onToggle}
               className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-[12px] font-bold px-3 py-2 rounded-lg transition-colors ${
-                isExpanded ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                isExpanded ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700 cursor-pointer hover:bg-emerald-100"
               }`}
             >
               {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
@@ -226,7 +226,7 @@ export const PendingOrdersPage: React.FC<PendingOrdersPageProps> = ({ onNewOrder
         
         <button 
           onClick={onNewOrder}
-          className="flex items-center gap-2 text-[13px] font-bold text-white bg-emerald-600 px-4 py-2.5 rounded-xl hover:bg-emerald-700 transition-all shadow-sm"
+          className="flex items-center gap-2 text-[13px] font-bold text-white bg-emerald-600 px-4 py-2.5 rounded-xl cursor-pointer hover:bg-emerald-700 transition-all shadow-sm"
         >
           <Plus size={16} />
           <span className="xs:inline">New Order</span>

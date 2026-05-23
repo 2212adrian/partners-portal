@@ -212,7 +212,7 @@ export const SuppliersPage: React.FC = () => {
                       <div className="col-span-1 flex justify-end">
                         <button
                           onClick={() => handleViewStore(supplier)}
-                          className="text-[11px] font-bold text-emerald-600 hover:text-emerald-700 transition-colors whitespace-nowrap"
+                          className="text-[11px] font-bold text-emerald-600 hover:text-emerald-700 cursor-pointer transition-colors whitespace-nowrap"
                         >
                           View Store
                         </button>

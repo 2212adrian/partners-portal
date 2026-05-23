@@ -121,7 +121,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
               <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
               <span className="text-[13px] font-semibold">Back to Suppliers</span>
             </button>
-            <button onClick={() => setIsCartOpen(!isCartOpen)} className="relative flex items-center gap-2 text-slate-600">
+            <button onClick={() => setIsCartOpen(!isCartOpen)} className="relative flex items-center gap-2 cursor-pointer text-slate-600">
               <ShoppingCart size={20} />
               {cart.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
@@ -215,7 +215,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
                           <button onClick={() => updateQuantity(product.id, cartItem.quantity + product.moq)} className="p-1 border border-slate-200 rounded"><Plus size={14}/></button>
                         </div>
                       ) : (
-                        <button onClick={() => addToCart(product)} className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold hover:bg-emerald-700 transition-colors">
+                        <button onClick={() => addToCart(product)} className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-[12px] font-bold hover:bg-emerald-700 cursor-pointer transition-colors">
                           Add to Cart
                         </button>
                       )}
@@ -273,7 +273,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
                     <span className="text-slate-500 font-semibold text-sm">Total</span>
                     <span className="text-xl font-bold text-emerald-600">₱{getCartTotal().toFixed(2)}</span>
                   </div>
-                  <button className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                  <button className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold flex items-center cursor-pointer justify-center gap-2">
                     <ClipboardList size={18} /> Review Order
                   </button>
                 </div>
