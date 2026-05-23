@@ -95,11 +95,15 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
         <div className="space-y-2 mb-4">
           <div className="flex items-center gap-2">
             <Building2 size={14} className="text-slate-400" />
-            <span className="text-[13px] font-semibold text-slate-600">{order.supplier}</span>
+            <span className="text-[13px] font-semibold text-slate-600">
+              {order.supplier}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <Package size={14} className="text-slate-400" />
-            <span className="text-[13px] text-slate-500 font-medium">{order.items} {order.items === 1 ? 'item' : 'items'}</span>
+            <span className="text-[13px] text-slate-500 font-medium">
+              {order.items} {order.items === 1 ? "item" : "items"}
+            </span>
           </div>
         </div>
 
@@ -111,22 +115,34 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
           <div>
-            <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Total Amount</p>
-            <p className="text-xl font-bold text-emerald-600 leading-tight">{order.total}</p>
+            <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">
+              Total Amount
+            </p>
+            <p className="text-xl font-bold text-emerald-600 leading-tight">
+              {order.total}
+            </p>
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-[12px] font-bold text-rose-600 bg-rose-50 px-3 py-2 rounded-lg hover:bg-rose-100 cursor-pointertransition-colors">
               <XCircle size={14} />
               <span className="whitespace-nowrap">Cancel Order</span>
             </button>
-            <button 
+            <button
               onClick={onToggle}
               className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-[12px] font-bold px-3 py-2 rounded-lg transition-colors ${
-                isExpanded ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700 cursor-pointer hover:bg-emerald-100"
+                isExpanded
+                  ? "bg-slate-100 text-slate-600"
+                  : "bg-emerald-50 text-emerald-700 cursor-pointer hover:bg-emerald-100"
               }`}
             >
-              {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-              <span className="whitespace-nowrap">{isExpanded ? "Hide" : "Details"}</span>
+              {isExpanded ? (
+                <ChevronDown size={14} />
+              ) : (
+                <ChevronRight size={14} />
+              )}
+              <span className="whitespace-nowrap">
+                {isExpanded ? "Hide" : "Details"}
+              </span>
             </button>
           </div>
         </div>
@@ -146,19 +162,29 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
               {/* LINE ITEMS Section Header */}
               <div className="flex items-center gap-2">
                 <PackageOpen size={16} className="text-emerald-600" />
-                <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Line Items</h3>
+                <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  Line Items
+                </h3>
               </div>
 
               {/* Line Items Table with Horizontal Scroll */}
               <div className="bg-white rounded-xl overflow-hidden border border-slate-200">
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[500px] text-left">
+                  <table className="w-full min-w-125 text-left">
                     <thead className="bg-slate-50 border-b border-slate-200">
                       <tr>
-                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">Product</th>
-                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">Dosage Form</th>
-                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 text-center">Qty</th>
-                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 text-right">Subtotal</th>
+                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                          Product
+                        </th>
+                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                          Dosage Form
+                        </th>
+                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 text-center">
+                          Qty
+                        </th>
+                        <th className="px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 text-right">
+                          Subtotal
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -167,12 +193,20 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
                               <Pill size={14} className="text-emerald-500" />
-                              <span className="text-[13px] font-bold text-slate-700">{item.product}</span>
+                              <span className="text-[13px] font-bold text-slate-700">
+                                {item.product}
+                              </span>
                             </div>
                           </td>
-                          <td className="px-4 py-3 text-[12px] text-slate-600 font-medium">{item.dosageForm}</td>
-                          <td className="px-4 py-3 text-[12px] text-slate-600 text-center font-bold">{item.quantity}</td>
-                          <td className="px-4 py-3 text-[13px] font-bold text-emerald-600 text-right">{item.subtotal}</td>
+                          <td className="px-4 py-3 text-[12px] text-slate-600 font-medium">
+                            {item.dosageForm}
+                          </td>
+                          <td className="px-4 py-3 text-[12px] text-slate-600 text-center font-bold">
+                            {item.quantity}
+                          </td>
+                          <td className="px-4 py-3 text-[13px] font-bold text-emerald-600 text-right">
+                            {item.subtotal}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -185,15 +219,23 @@ const OrderCard = ({ order, isExpanded, onToggle }: { order: Order; isExpanded: 
                 <div className="flex items-start gap-2">
                   <Hash size={14} className="text-slate-400 mt-0.5" />
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Reference ID</p>
-                    <p className="text-[11px] font-mono text-slate-600 break-all">{order.reference}</p>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">
+                      Reference ID
+                    </p>
+                    <p className="text-[11px] font-mono text-slate-600 break-all">
+                      {order.reference}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <RefreshCw size={14} className="text-slate-400 mt-0.5" />
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Last Updated</p>
-                    <p className="text-[12px] text-slate-600 font-medium">{order.updatedAt}</p>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">
+                      Last Updated
+                    </p>
+                    <p className="text-[12px] text-slate-600 font-medium">
+                      {order.updatedAt}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -213,7 +255,7 @@ export const PendingOrdersPage: React.FC<PendingOrdersPageProps> = ({ onNewOrder
   };
 
   return (
-    <div className="p-4 sm:p-6 space-y-5 h-full overflow-y-auto bg-[#F8FAFC]">
+    <div className="p-4 sm:p-6 space-y-5 h-full overflow-y-auto bg-brand-bg">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

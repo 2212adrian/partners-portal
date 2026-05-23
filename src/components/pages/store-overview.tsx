@@ -102,7 +102,7 @@ export const StoreOverviewPage: React.FC<StoreOverviewPageProps> = ({
                       Profile
                     </span>
                   </div>
-                  <div className="h-[1px] flex-1 mx-2 bg-slate-200" />
+                  <div className="h-px flex-1 mx-2 bg-slate-200" />
                   <div className="flex items-center gap-1.5">
                     <div
                       className={`w-2 h-2 rounded-full ${store.kycStep >= 2 ? "bg-brand-blue" : "bg-slate-200"}`}
@@ -113,7 +113,7 @@ export const StoreOverviewPage: React.FC<StoreOverviewPageProps> = ({
                       Submitted
                     </span>
                   </div>
-                  <div className="h-[1px] flex-1 mx-2 bg-slate-200" />
+                  <div className="h-px flex-1 mx-2 bg-slate-200" />
                   <div className="flex items-center gap-1.5">
                     <div
                       className={`w-2 h-2 rounded-full ${store.kycStep >= 3 ? "bg-brand-blue" : "bg-slate-200"}`}

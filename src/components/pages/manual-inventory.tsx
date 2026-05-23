@@ -490,7 +490,7 @@ export const ManualInventoryPage: React.FC<ManualInventoryPageProps> = ({
           )}
 
           <div className="flex flex-1 overflow-hidden h-full">
-            <div className="w-52 border-r border-slate-200 bg-[#F8FAFC] p-6 shrink-0 h-full overflow-y-auto">
+            <div className="w-52 border-r border-slate-200 bg-brand-bg p-6 shrink-0 h-full overflow-y-auto">
               <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
                 Filters
               </h3>

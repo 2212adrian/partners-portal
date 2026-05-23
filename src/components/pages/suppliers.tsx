@@ -63,7 +63,7 @@ export const SuppliersPage: React.FC = () => {
   }
 
   return (
-    <div className="h-full overflow-y-auto bg-[#F8FAFC]">
+    <div className="h-full overflow-y-auto bg-brand-bg">
       <div className="p-4 md:p-6 space-y-4 md:space-y-5">
         {/* Header */}
         <motion.div
@@ -154,7 +154,7 @@ export const SuppliersPage: React.FC = () => {
           className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm"
         >
           <div className="overflow-x-auto">
-            <div className="min-w-[800px] md:min-w-full">
+            <div className="min-w-200 md:min-w-full">
               {/* Table Header */}
               <div className="grid grid-cols-12 gap-3 px-5 py-3 bg-slate-50 border-b border-slate-200">
                 <div className="col-span-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">CODE</div>

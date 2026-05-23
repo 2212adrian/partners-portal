@@ -108,7 +108,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
   };
 
   return (
-    <div className="h-full overflow-y-auto bg-[#F8FAFC]">
+    <div className="h-full overflow-y-auto bg-brand-bg">
       {/* Header - Fixed Z-Index to prevent overlapping Sidebar */}
       <div className="sticky top-0 z-0 bg-white border-b border-slate-200">
         <div className="px-6 py-4">
@@ -146,7 +146,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
       </div>
 
       <div className="flex flex-col lg:flex-row h-full">
-        <div className={`flex-1 p-4 md:p-6 transition-all duration-300 ${isCartOpen ? 'lg:mr-[380px]' : ''}`}>
+        <div className={`flex-1 p-4 md:p-6 transition-all duration-300 ${isCartOpen ? 'lg:mr-95' : ''}`}>
           <div className="relative max-w-md mb-6">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -235,7 +235,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
               <motion.div
                 initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="fixed z-50 bg-white flex flex-col shadow-2xl right-0 top-0 h-full lg:w-[380px] w-[85%]"
+                className="fixed z-50 bg-white flex flex-col shadow-2xl right-0 top-0 h-full lg:w-95 w-[85%]"
               >
                 <div className="p-4 border-b border-slate-100 flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -255,7 +255,7 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2 bg-white border border-slate-200 rounded p-1">
                           <button onClick={() => updateQuantity(item.id, item.quantity - item.moq)} className="p-0.5"><Minus size={12}/></button>
-                          <span className="text-[12px] font-bold min-w-[30px] text-center">{item.quantity}</span>
+                          <span className="text-[12px] font-bold min-w-7.5 text-center">{item.quantity}</span>
                           <button onClick={() => updateQuantity(item.id, item.quantity + item.moq)} className="p-0.5"><Plus size={12}/></button>
                         </div>
                         <p className="font-bold text-emerald-600 text-sm">₱{(item.basePrice * item.quantity).toFixed(2)}</p>

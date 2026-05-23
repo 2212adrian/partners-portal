@@ -17,7 +17,7 @@ import {
 export const OverviewPage: React.FC = () => {
   return (
     // Background should be the light ghost-white from the screenshot
-    <div className="p-4 space-y-4 bg-[#F8FAFC] min-h-full">
+    <div className="p-4 space-y-4 bg-brand-bg min-h-full">
       {/* Title Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-black text-slate-900 tracking-tight">

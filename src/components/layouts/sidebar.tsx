@@ -100,8 +100,6 @@ const SectionLabel = ({ label }: { label: string }) => (
 export const Sidebar: React.FC<SidebarProps> = ({
   activePage,
   onSelectPage,
-  selectedTransactionId,
-  onSelectTransactionId,
 }) => {
   return (
     <aside className="w-65 h-full bg-white border-r border-slate-100 flex flex-col justify-between overflow-hidden select-none">

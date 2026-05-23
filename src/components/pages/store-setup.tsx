@@ -39,7 +39,7 @@ export const StoreSetupPage: React.FC = () => {
   ];
 
   return (
-    <div className="p-4 sm:p-8 space-y-6 overflow-y-auto h-full bg-[#F8FAFC]">
+    <div className="p-4 sm:p-8 space-y-6 overflow-y-auto h-full bg-brand-bg">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -140,13 +140,13 @@ export const StoreSetupPage: React.FC = () => {
 
             <div className="space-y-6">
               <div className="relative pl-6 border-l-2 border-purple-200">
-                <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-purple-500" />
+                <div className="absolute -left-1.25 top-0 w-2 h-2 rounded-full bg-purple-500" />
                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">POS Module</label>
                 <p className="text-sm font-bold text-emerald-600">Enabled</p>
               </div>
 
               <div className="relative pl-6 border-l-2 border-purple-100">
-                <div className="absolute left-[-5px] top-0 w-2 h-2 rounded-full bg-slate-200" />
+                <div className="absolute -left-1.25 top-0 w-2 h-2 rounded-full bg-slate-200" />
                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">E-Commerce</label>
                 <p className="text-sm font-bold text-slate-400 italic">Inactive</p>
               </div>
