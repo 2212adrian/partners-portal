@@ -43,7 +43,7 @@ export const StoreOverviewPage: React.FC<StoreOverviewPageProps> = ({
       <div className="w-full max-w-4xl space-y-8">
         {/* Header */}
         <div className="text-center md:text-left space-y-2">
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
             Store Overview
           </h1>
           <p className="text-sm font-medium text-slate-500">
@@ -63,7 +63,7 @@ export const StoreOverviewPage: React.FC<StoreOverviewPageProps> = ({
                 {/* Top header & badge */}
                 <div className="flex justify-between items-start gap-4 mb-4">
                   <div>
-                    <h2 className="text-lg font-extrabold text-slate-900 leading-tight">
+                    <h2 className="text-lg font-bold text-slate-900 leading-tight">
                       {store.name}
                     </h2>
                     <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block mt-1">

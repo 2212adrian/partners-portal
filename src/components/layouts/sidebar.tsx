@@ -77,8 +77,8 @@ const NavItem = ({
     <span
       className={`text-[14px] transition-colors ${
         active
-          ? "font-bold text-slate-900"
-          : "font-semibold text-slate-500 group-hover:text-slate-700"
+          ? "font-semibold text-slate-900"
+          : "font-semibold text-slate-900 group-hover:text-slate-700"
       }`}
     >
       {label}

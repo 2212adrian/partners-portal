@@ -20,7 +20,7 @@ export const OverviewPage: React.FC = () => {
     <div className="p-4 space-y-4 bg-brand-bg min-h-full">
       {/* Title Section */}
       <div className="mb-6">
-        <h1 className="text-2xl font-black text-slate-900 tracking-tight">
+        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
           Overview
         </h1>
         <p className="text-[13px] font-medium text-slate-500">
