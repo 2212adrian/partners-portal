@@ -1,6 +1,6 @@
 // src/components/pages/orders/confirmed-orders.tsx
 import React from "react";
-import { ShieldCheck, Package, MapPin, Truck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export const ConfirmedOrdersPage: React.FC = () => (
   <div className="p-6 space-y-5 h-full overflow-y-auto">

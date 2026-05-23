@@ -1,6 +1,6 @@
 // src/components/pages/suppliers.tsx - FIXED COLUMN WIDTHS
 import React, { useState } from "react";
-import { Users, Search, MapPin, CheckCircle, ChevronRight, Building2, TrendingUp, X } from "lucide-react";
+import { Users, Search, MapPin, CheckCircle, Building2, TrendingUp, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SupplierProductsPage } from "./supplier-products";
 

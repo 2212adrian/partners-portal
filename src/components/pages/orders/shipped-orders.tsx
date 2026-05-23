@@ -1,5 +1,5 @@
 import React from "react";
-import { Truck, Package, MapPin, CheckCircle } from "lucide-react";
+import { Truck } from "lucide-react";
 
 export const ShippedOrdersPage: React.FC = () => (
   <div className="p-6 space-y-5 h-full overflow-y-auto">

@@ -1,5 +1,5 @@
 import React from "react";
-import { UserPlus, Mail, User, Shield, Send, CheckCircle2, Clock, Info, ArrowLeft, MoreVertical } from "lucide-react";
+import { UserPlus, Mail, Shield, Send, CheckCircle2, Clock, Info, MoreVertical } from "lucide-react";
 
 export const StaffInvitesPage: React.FC = () => {
   const stats = [

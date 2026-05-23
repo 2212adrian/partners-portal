@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Navigation, Globe, Building2, Map as MapIcon, Landmark } from "lucide-react";
+import { MapPin, Navigation, Globe, Building2, Landmark } from "lucide-react";
 
 export const AddressPage: React.FC = () => {
   return (

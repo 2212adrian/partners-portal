@@ -1,4 +1,5 @@
-import React, { type Dispatch, type SetStateAction } from "react";
+import React from "react";
+import { type PageKey } from "../../App";
 import {
   LayoutGrid,
   Store,
@@ -13,27 +14,11 @@ import {
   ShoppingBag,
   Box,
   UploadCloud,
-  Settings,
   CornerDownLeft,
   type LucideIcon,
   LogOut,
+  Upload,
 } from "lucide-react";
-
-type PageKey =
-  | "Overview"
-  | "StoreInfo"
-  | "Address"
-  | "Location"
-  | "Contact"
-  | "Facility"
-  | "Documents"
-  | "StoreSetup"
-  | "StaffInvites"
-  | "Credentials"
-  | "Suppliers"
-  | "MyOrders"
-  | "ManualInventory"
-  | "BatchImport";
 
 // VIVID MULTI-COLOR ICON BOXES
 const iconStyles: Record<string, string> = {
@@ -50,8 +35,16 @@ const iconStyles: Record<string, string> = {
   Suppliers: "bg-emerald-100 text-emerald-600",
   MyOrders: "bg-orange-100 text-orange-500",
   ManualInventory: "bg-orange-50 text-orange-400",
-  BatchImport: "bg-blue-100 text-blue-500",
+  BatchImport: "bg-teal-100 text-teal-600",
+  StoreOverview: "bg-blue-100 text-blue-500",
 };
+
+interface SidebarProps {
+  activePage: PageKey;
+  onSelectPage: (page: PageKey) => void;
+  selectedTransactionId?: string | null;
+  onSelectTransactionId?: (id: string | null) => void;
+}
 
 const NavItem = ({
   label,
@@ -80,7 +73,7 @@ const NavItem = ({
       <Icon size={18} strokeWidth={2.5} />
     </div>
 
-    {/* Label */}
+    {/* Label - Bold if selected, Semibold if unselected */}
     <span
       className={`text-[14px] transition-colors ${
         active
@@ -99,19 +92,45 @@ const NavItem = ({
 );
 
 const SectionLabel = ({ label }: { label: string }) => (
-  <div className="px-6 mt-2 mb-2 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+  <div className="px-6 mt-3 mb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] select-none">
     {label}
   </div>
 );
 
-export const Sidebar: React.FC<{
-  activePage: PageKey;
-  onSelectPage: Dispatch<SetStateAction<PageKey>>;
-}> = ({ activePage, onSelectPage }) => {
+export const Sidebar: React.FC<SidebarProps> = ({
+  activePage,
+  onSelectPage,
+  selectedTransactionId,
+  onSelectTransactionId,
+}) => {
   return (
-    <aside className="w-65 h-screen bg-white border-r border-slate-100 flex flex-col overflow-hidden select-none">
-      {/* Main Nav Scroll Area */}
-      <nav className="flex-1 overflow-y-auto no-scrollbar pt-2">
+    <aside className="w-65 h-full bg-white border-r border-slate-100 flex flex-col justify-between overflow-hidden select-none">
+      {/* 1. FIXED TOP SECTION */}
+      <div className="px-4 pt-4 pb-2 bg-slate-50/60 border-b border-slate-100 shrink-0">
+        <button
+          type="button"
+          onClick={() => onSelectPage("StoreOverview")}
+          className="flex items-center justify-between w-full px-4 py-3 bg-white hover:bg-slate-50/50 border border-slate-200 hover:border-brand-blue/35 rounded-xl transition-all shadow-sm group cursor-pointer"
+        >
+          <div className="flex items-center gap-3">
+            {/* Dynamic Brand Icon Circle */}
+            <div className="p-2 bg-brand-blue/10 text-brand-blue rounded-lg group-hover:scale-110 transition-transform flex items-center justify-center">
+              <CornerDownLeft size={14} strokeWidth={3} />
+            </div>
+            <div className="flex flex-col items-start text-left">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">
+                Back To
+              </span>
+              <span className="text-xs font-semibold text-slate-800 tracking-tight leading-none group-hover:text-brand-blue transition-colors">
+                Store Overview
+              </span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      {/* 2. SCROLLABLE NAV ITEMS */}
+      <nav className="flex-1 overflow-y-auto no-scrollbar">
         <NavItem
           label="Overview"
           icon={LayoutGrid}
@@ -191,6 +210,13 @@ export const Sidebar: React.FC<{
 
         <SectionLabel label="Marketplace" />
         <NavItem
+          label="Suppliers"
+          icon={UploadCloud}
+          active={activePage === "Suppliers"}
+          onClick={() => onSelectPage("Suppliers")}
+          pageKey="Suppliers"
+        />
+        <NavItem
           label="My Orders"
           icon={ShoppingBag}
           active={activePage === "MyOrders"}
@@ -200,40 +226,24 @@ export const Sidebar: React.FC<{
         <NavItem
           label="Manual Inventory"
           icon={Box}
-          active={activePage === "ManualInventory"}
+          active={false} // Cleanly resolves TypeScript narrowing warning on Standard Menu
           onClick={() => onSelectPage("ManualInventory")}
           pageKey="ManualInventory"
         />
         <NavItem
           label="Batch Import"
-          icon={UploadCloud}
+          icon={Upload}
           active={activePage === "BatchImport"}
           onClick={() => onSelectPage("BatchImport")}
           pageKey="BatchImport"
         />
-
-        {/* Store Overview Button inside the scrollable nav but at bottom */}
-        <div className="mt-8 px-6 mb-2">
-          <button className="flex items-center gap-3 text-slate-400 font-black text-[12px] hover:text-emerald-700 transition-colors">
-            <CornerDownLeft size={16} strokeWidth={3} />
-            STORE OVERVIEW
-          </button>
-        </div>
       </nav>
-      
-      {/* Logout Button */}
-      <button className="flex items-center gap-2 border-t border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-all hover:bg-slate-50 hover:text-rose-600">
-        <LogOut size={16} />
+
+      {/* 3. FIXED LOGOUT BUTTON (Not affected by scroll) */}
+      <button className="flex items-center gap-2 border-t border-slate-200 bg-white px-5 py-4 text-sm font-semibold text-slate-600 transition-all hover:bg-slate-50 hover:text-rose-600 cursor-pointer shrink-0">
+        <LogOut size={16} strokeWidth={2.5} />
         Logout
       </button>
-
-      {/* FIXED SETTINGS FOOTER */}
-      <div className="border-t border-slate-100 bg-slate-50/50 p-4">
-        <button className="flex items-center gap-4 px-4 py-3 w-full rounded-xl text-slate-500 hover:bg-white hover:text-[#6366f1] transition-all border border-transparent hover:border-slate-200">
-          <Settings size={20} strokeWidth={2} />
-          <span className="text-sm font-black">Settings</span>
-        </button>
-      </div>
     </aside>
   );
 };

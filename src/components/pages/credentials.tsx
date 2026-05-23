@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Key, Eye, EyeOff, RefreshCw, Copy, ShieldAlert, Lock, Info, CheckCircle2, Fingerprint } from "lucide-react";
+import { Key, Eye, EyeOff, RefreshCw, Copy, ShieldAlert, Lock, CheckCircle2, Fingerprint } from "lucide-react";
 
 export const CredentialsPage: React.FC = () => {
   const [showSecret, setShowSecret] = useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Wallet, Package, MapPin, AlertCircle } from "lucide-react";
+import { Wallet } from "lucide-react";
 
 export const AwaitingPaymentOrdersPage: React.FC = () => (
   <div className="p-6 space-y-5 h-full overflow-y-auto">

@@ -2,15 +2,21 @@ import React from "react";
 import { Menu, LogOut } from "lucide-react";
 import Logo from "../../assets/Logo.png";
 
-export const Header: React.FC<{ toggleSidebar: () => void }> = ({
+interface HeaderProps {
+  toggleSidebar: () => void;
+  isStoreOverview: boolean; // Prop to track if the current view is "StoreOverview"
+}
+
+export const Header: React.FC<HeaderProps> = ({
   toggleSidebar,
+  isStoreOverview,
 }) => {
   return (
-    <header className="flex h-20 items-center justify-between gap-4 border-b border-slate-200 shadow-sm bg-white px-8 shadow-sm">
+    <header className="flex h-20 items-center justify-between gap-4 border-b border-slate-200 bg-white px-8 shadow-sm">
       <div className="flex items-center gap-4">
         <button
           onClick={toggleSidebar}
-          className="block md:hidden rounded-lg border border-slate-200 bg-white p-2 text-slate-700 hover:bg-slate-50"
+          className="block md:hidden rounded-lg border border-slate-200 bg-white p-2 text-slate-700 hover:bg-slate-50 cursor-pointer"
         >
           <Menu size={20} />
         </button>
@@ -28,7 +34,16 @@ export const Header: React.FC<{ toggleSidebar: () => void }> = ({
         </div>
       </div>
 
-      <div className="flex items-center gap-6"></div>
+      {/* Right container for the Logout button */}
+      <div className="flex items-center gap-6">
+        {isStoreOverview && (
+          <button className="flex items-center gap-2 border border-slate-200/80 hover:border-rose-200/60 bg-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider text-slate-600 hover:text-rose-600 hover:bg-rose-50/40 transition-all cursor-pointer shadow-sm">
+            <LogOut size={14} className="stroke-[2.5]" />
+            Logout
+          </button>
+        )}
+      </div>
     </header>
   );
 };
+  

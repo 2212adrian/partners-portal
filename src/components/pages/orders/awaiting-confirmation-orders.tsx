@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, Package, MapPin, Clock } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export const AwaitingConfirmationOrdersPage: React.FC = () => (
   <div className="p-6 space-y-5 h-full overflow-y-auto">

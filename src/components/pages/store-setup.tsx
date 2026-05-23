@@ -6,8 +6,6 @@ import {
   Layers, 
   Box, 
   Coins, 
-  Clock, 
-  Info, 
   AlertTriangle,
   Monitor
 } from "lucide-react";

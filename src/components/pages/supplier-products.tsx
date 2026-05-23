@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { 
   Search, 
-  Package, 
   Pill, 
   Barcode, 
   Tag, 
   Truck, 
   ShoppingCart,
-  Clock,
   ChevronRight,
   Home,
   Building2,
@@ -68,8 +66,6 @@ export const SupplierProductsPage: React.FC<SupplierProductsProps> = ({ supplier
   const [searchQuery, setSearchQuery] = useState("");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [orderNotes, setOrderNotes] = useState("");
-
   const filteredProducts = mockProducts.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.sku.toLowerCase().includes(searchQuery.toLowerCase()) ||
